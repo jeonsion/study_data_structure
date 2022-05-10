@@ -52,10 +52,10 @@ int check_matching(const char* in)  {
     StackType s;
     char ch, open_ch;
     int i, n = strlen(in);
-    init_stack(&s);
+    init_stack(&s); //스택 초기화
 
 
-    for(i = 0; i<n; i++)    {
+    for(i = 0; i<n; i++)    {       //문자열의 길이만큼 반복문 시행
         ch = in[i];
         switch(ch)  {
             case '(' :  case  '[' : case '{'    :
@@ -65,7 +65,7 @@ int check_matching(const char* in)  {
                 if(is_empty(&s)) return 0;
                 else{
                     open_ch = pop(&s);
-                    if((open_ch == '(' && ch !=')') ||
+                    if((open_ch == '(' && ch !=')') ||  //스택에서 꺼낸 open_ch와 ch가 다르면 오류
                         (open_ch == '[' && ch !=']')||
                         (open_ch == '{' && ch !='}')){
                         return 0;
@@ -74,7 +74,7 @@ int check_matching(const char* in)  {
                 }
         }
     }
-    if(!is_empty(&s))
+    if(!is_empty(&s))   //스택이 비어있지 않으면
         return 0;
     
     return 1;
