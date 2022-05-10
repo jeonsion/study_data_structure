@@ -68,21 +68,21 @@ void insert(node* pre, char* name, int id) {
 int main() {
 	node* pre = NULL;
 
-	insert(NULL, "ÀüÃ¢¿Ï", 1000);
+	insert(NULL, "ï¿½ï¿½Ã¢ï¿½ï¿½", 1000);
 	print_list();
 
-	insert(NULL, "À±Àç¼®", 2000);
+	insert(NULL, "ï¿½ï¿½ï¿½ç¼®", 2000);
 	print_list();
 
-	pre = search_list_by_name("ÀüÃ¢¿Ï");
-	insert(pre, "±è´ëÈñ", 3000);
+	pre = search_list_by_name("ï¿½ï¿½Ã¢ï¿½ï¿½");
+	insert(pre, "ï¿½ï¿½ï¿½ï¿½ï¿?", 3000);
 	print_list();
 
 	pre = search_list_by_id(1000);
-	insert(pre, "±èµ¿¹Î", 4000);
+	insert(pre, "ï¿½èµ¿ï¿½ï¿½", 4000);
 	print_list();
 
-	insert(NULL, "¼ÛÅÂ¿ø", 5000);
+	insert(NULL, "ï¿½ï¿½ï¿½Â¿ï¿½", 5000);
 	print_list();
 
 
