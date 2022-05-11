@@ -53,6 +53,7 @@ element peek(StackType* s) {
 
 void infix_to_postfix(char exp[], char postfix[]) {
 	int i = 0;
+    int pos = 0;
 	char ch, top_op;
 	int len = strlen(exp);
 	StackType s;
@@ -63,7 +64,8 @@ void infix_to_postfix(char exp[], char postfix[]) {
 		switch (ch) {
 			case '+': case '-': case '*': case '/': 
 			while (!is_empty(&s) && (prec(ch) <= prec(peek(&s))))
-			printf("%c", pop(&s));
+			//printf("%c", pop(&s));
+            postfix[pos++]=pop(&s);
 			push(&s, ch);
 			break;
 			case '(': // 왼쪽 괄호
@@ -73,17 +75,27 @@ void infix_to_postfix(char exp[], char postfix[]) {
 			top_op = pop(&s);
 			// 왼쪽 괄호를 만날 때까지 출력
 			while (top_op != '(') {
-				printf("%c", top_op);
+				//printf("%c", top_op);
+                 postfix[pos++]=pop(&s);
 				top_op = pop(&s);
 			}
 			break;
-			default: // 피연산자
-			printf("%c", ch);
-			break;
+			default: 
+                do{
+                    postfix[pos++] = ch;
+                    ch = exp[++i];
+                }while(ch>='0' && ch<='9');
+                postfix[pos++] = ' ';
+                i--;
+                break;
 		}
 	}
-	while (!is_empty(&s)) // 스택에 저장된 연산자들 출력
-	printf("%c", pop(&s));
+    // 스택에 저장된 연산자들 출력
+	while (!is_empty(&s))   {
+    //printf("%c", pop(&s));
+        postfix[pos++]=pop(&s);
+    } 
+	
 }
 
 int prec(char op) {
