@@ -83,7 +83,7 @@ void infix_to_postfix(char exp[]) {
 }
 int main() {
 	char expr[2][80] = {
-		"8/2-3+(3*2)", "1/2*4*(1/4)"
+		"8/2-3+(3*2)", "(2+3)*4"
 	}
 	;
 	printf("중위수식 : %s ==> 후위수식 :", expr[0]);
