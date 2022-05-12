@@ -17,7 +17,7 @@ typedef struct {
 element here = { 1, 0 };
 
 char maze[MAZE_SIZE][MAZE_SIZE] = {
-    {'1', '1', '1', '1', '1', '1', '1'}, // maze[í–‰][ì—´]ì´ í•´ë‹¹ ìœ„ì¹˜ì˜ ë¯¸ë¡œì˜ ìƒíƒœ
+    {'1', '1', '1', '1', '1', '1', '1'}, // maze[Çà][¿­]ÀÌ ÇØ´ç À§Ä¡ÀÇ ¹Ì·ÎÀÇ »óÅÂ
     {'0', '0', '1', '0', '0', '0', '0'},
     {'1', '0', '0', '0', '1', '0', '1'},
     {'1', '0', '1', '0', '1', '0', '1'},
@@ -39,35 +39,35 @@ int is_full(StackType* s) {
 
 void push(StackType* s, element item) {
     if (is_full(s)) {
-        fprintf(stderr, "ìŠ¤íƒ í¬í™”ì—ëŸ¬\n");
+        fprintf(stderr, "½ºÅÃ Æ÷È­¿¡·¯\n");
         return;
     }
     else    {
         s->data[++(s->top)] = item;
-        printf("ë“¤ì–´ì˜¨ ì¢Œí‘œ : %d, %d\n", item.row, item.col);
+       // printf("µé¾î¿Â ÁÂÇ¥ : %d, %d\n", item.row, item.col);
     }
 }
 
 element pop(StackType* s) {
     if (is_empty(s)) {
-        fprintf(stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
+        fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
         exit(1);
     }
     else
-        //printf("ë‚˜ê°€ëŠ” ì¢Œí‘œ : %d, %d\n",s->data[(s->top)].row,s->data[(s->top)].col);
+        //printf("³ª°¡´Â ÁÂÇ¥ : %d, %d\n",s->data[(s->top)].row,s->data[(s->top)].col);
         return s->data[(s->top)--];
 }
 
 element peek(StackType* s) {
     if (is_empty(s)) {
-        fprintf(stderr, "ìŠ¤íƒ ê³µë°±ì—ëŸ¬ \n");
+        fprintf(stderr, "½ºÅÃ °ø¹é¿¡·¯ \n");
         exit(1);
     }
     else return s->data[s->top];
 }
 
 void pushLocation(StackType* s, int row, int col) {
-    if (row<0 && row>(MAZE_SIZE - 1) && col<0 && col>(MAZE_SIZE - 1))
+    if (row<0 || row>(MAZE_SIZE - 1) || col<0 || col>(MAZE_SIZE - 1))
         return;
     if ((maze[row][col] != '1') && (maze[row][col] != '.')) {
         element temp;
@@ -93,7 +93,7 @@ int main() {
     init_stack(&s);
     maze[here.row][here.col] = 'e';
     printMaze();
-    getchar();              //ì—”í„° ëˆ„ë¥¼ ëŒ€ë§ˆë‹¤ ë°˜ì‘
+    getchar();              //¿£ÅÍ ´©¸¦ ´ë¸¶´Ù ¹İÀÀ
 
     while (maze[here.row][here.col] != 'x') {
         r = here.row;
@@ -109,7 +109,7 @@ int main() {
         pushLocation(&s, r, c + 1);
 
         if (is_empty(&s)) {
-            printf("ì‹¤íŒ¨\n");
+            printf("½ÇÆĞ\n");
             return 0;
         }
         else {
@@ -117,10 +117,10 @@ int main() {
         }
     }
 
-    //ì¶œêµ¬ë¥¼ ì°¾ì€ ê²½ìš°
+    //Ãâ±¸¸¦ Ã£Àº °æ¿ì
 
-    maze[here.row][here.col] = 'x';
+    maze[here.row][here.col] = 'm';
     printMaze();
-    printf("ì„±ê³µ");
+    printf("¼º°ø");
 
 }

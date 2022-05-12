@@ -4,7 +4,7 @@
 #define EXPR_SIZE 100
 #pragma warning(disable:4996)
 
-typedef char element;
+typedef int element;
 typedef struct {
    element data[EXPR_SIZE];
    int top;
@@ -97,8 +97,9 @@ void infix_to_postfix(char exp[], char postfix[]) {
    int len = strlen(exp);
    StackType s;
    init_stack(&s);
-   for (i = 0; i < len; i++) {
+   for (i = 0; i < exp[i]!='\0'; i++) {
       ch = exp[i];
+
       switch (ch) {
          case '+': case '-': case '*': case '/':
             while (!is_empty(&s) && (prec(ch) <= prec(peek(&s)))) {
@@ -128,7 +129,7 @@ void infix_to_postfix(char exp[], char postfix[]) {
    }while(!is_empty(&s)){
        postfix[pos++]=pop(&s);
    }
-   postfix[pos] = '\0';
+    postfix[pos] = '\0';
 }
 
 int eval(char exp[]) {
@@ -154,12 +155,12 @@ int eval(char exp[]) {
         } else {
             op2 = pop(&s);
             op1 = pop(&s);
-            printf("op1 : %d, op2 : %d\n", op1, op2);
+            //printf("op1 : %d, op2 : %d\n", op1, op2);
             switch (ch) {
-                case '+': push(&s, op1 + op2); break;
-                case '-': push(&s, op1 - op2); break;
-                case '*': push(&s, op1 * op2); break;
-                case '/': push(&s, op1 / op2); break;
+                case '+': push(&s, op1+op2); break;
+                case '-': push(&s, op1-op2); break;
+                case '*': push(&s, op1*op2); break;
+                case '/': push(&s, op1/op2); break;
 
          }
       }

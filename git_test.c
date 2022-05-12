@@ -190,7 +190,7 @@ void infix_to_postfix(char exp[], char postfix[]) {
 // eval()
 int eval(char exp[]) {
     int op1, op2, i;
-    int len = strlen(exp);
+    int len = strlen(exp);0
     char ch;
     StackType s;
 
@@ -199,6 +199,7 @@ int eval(char exp[]) {
     for(i=0; i<len; i++) {
         int value = 0, pos = 0;
         char temp[100] = {0};
+        char ch;
 
         ch = exp[i];
 
@@ -213,6 +214,7 @@ int eval(char exp[]) {
             push(&s, value);
         } else {
             op2 = pop(&s); op1 = pop(&s);
+            printf("op1 : %d, op2 : %d\n", op1, op2);
             switch(ch) {
                 case '+': push(&s, op1+op2); break;
                 case '-': push(&s, op1-op2); break;
