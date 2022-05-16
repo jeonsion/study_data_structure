@@ -18,7 +18,7 @@ typedef struct {
 element here = {1, 0};
 
 char maze[MAZE_SIZE][MAZE_SIZE] = {
-    {'1', '1', '1', '1', '1', '1', '1'}, // maze[Çà][¿­]ÀÌ ÇØ´ç À§Ä¡ÀÇ ¹Ì·ÎÀÇ »óÅÂ
+    {'1', '1', '1', '1', '1', '1', '1'}, // maze[ï¿½ï¿½][ï¿½ï¿½]ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {'0', '0', '1', '0', '0', '0', '0'},
     {'1', '0', '0', '0', '1', '0', '1'},
     {'1', '0', '1', '0', '1', '0', '1'},
@@ -46,7 +46,7 @@ int is_empty(QueueType *q)   {
 
 void enqueue(QueueType *q, element item)    {
     if(is_full(q))  {
-        error("Å¥°¡ Æ÷È­»óÅÂÀÔ´Ï´Ù.");
+        error("Å¥ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
         return ;
     }
     q->rear = (q->rear +1) % MAX_QUEUE_SIZE;
@@ -55,7 +55,7 @@ void enqueue(QueueType *q, element item)    {
 
 element dequeue(QueueType *q)   {
     if(is_empty(q)) {
-        error("Å¥°¡ °ø¹é»óÅÂÀÔ´Ï´Ù.");
+        error("Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
         exit(1);
     }
     q->front = (q->front +1) %MAX_QUEUE_SIZE;
@@ -64,7 +64,7 @@ element dequeue(QueueType *q)   {
 
 void pushLocation(QueueType *q, int row, int col)   {
     //
-    if (row<0 || row>(MAZE_SIZE - 1) || col<0 || col>(MAZE_SIZE - 1))
+    if ((row>=0 && row<=(MAZE_SIZE - 1)) && (col>=0 && col<=(MAZE_SIZE - 1)))
         return;
     if ((maze[row][col] != '1') && (maze[row][col] != '.')) {
         element temp;
@@ -91,7 +91,7 @@ int main()  {
 
     maze[here.row][here.col] = 'e';
     printMaze();
-    getchar();              //¿£ÅÍ ´©¸¦ ´ë¸¶´Ù ¹ÝÀÀ
+    getchar();              //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ë¸¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     while (maze[here.row][here.col] != 'x') {
         r = here.row;
@@ -108,7 +108,7 @@ int main()  {
         pushLocation(&q, r, c - 1);
 
         if (is_empty(&q)) {
-            printf("½ÇÆÐ\n");
+            printf("ï¿½ï¿½ï¿½ï¿½\n");
             return 0;
         }
         else {
@@ -116,11 +116,11 @@ int main()  {
         }
     }
 
-    //Ãâ±¸¸¦ Ã£Àº °æ¿ì
+    //ï¿½â±¸ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½
 
     maze[here.row][here.col] = 'm';
     printMaze();
-    printf("¼º°ø");
+    printf("ï¿½ï¿½ï¿½ï¿½");
 
 
 

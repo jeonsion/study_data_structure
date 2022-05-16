@@ -17,7 +17,7 @@ typedef struct {
 element here = { 1, 0 };
 
 char maze[MAZE_SIZE][MAZE_SIZE] = {
-    {'1', '1', '1', '1', '1', '1', '1'}, // maze[Çà][¿­]ÀÌ ÇØ´ç À§Ä¡ÀÇ ¹Ì·ÎÀÇ »óÅÂ
+    {'1', '1', '1', '1', '1', '1', '1'}, // maze[ï¿½ï¿½][ï¿½ï¿½]ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {'0', '0', '1', '0', '0', '0', '0'},
     {'1', '0', '0', '0', '1', '0', '1'},
     {'1', '0', '1', '0', '1', '0', '1'},
@@ -39,28 +39,28 @@ int is_full(StackType* s) {
 
 void push(StackType* s, element item) {
     if (is_full(s)) {
-        fprintf(stderr, "½ºÅÃ Æ÷È­¿¡·¯\n");
+        fprintf(stderr, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½\n");
         return;
     }
     else    {
         s->data[++(s->top)] = item;
-       // printf("µé¾î¿Â ÁÂÇ¥ : %d, %d\n", item.row, item.col);
+       // printf("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ : %d, %d\n", item.row, item.col);
     }
 }
 
 element pop(StackType* s) {
     if (is_empty(s)) {
-        fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+        fprintf(stderr, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½\n");
         exit(1);
     }
     else
-        //printf("³ª°¡´Â ÁÂÇ¥ : %d, %d\n",s->data[(s->top)].row,s->data[(s->top)].col);
+        //printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ : %d, %d\n",s->data[(s->top)].row,s->data[(s->top)].col);
         return s->data[(s->top)--];
 }
 
 element peek(StackType* s) {
     if (is_empty(s)) {
-        fprintf(stderr, "½ºÅÃ °ø¹é¿¡·¯ \n");
+        fprintf(stderr, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½é¿¡ï¿½ï¿½ \n");
         exit(1);
     }
     else return s->data[s->top];
@@ -93,7 +93,7 @@ int main() {
     init_stack(&s);
     maze[here.row][here.col] = 'e';
     printMaze();
-    getchar();              //¿£ÅÍ ´©¸¦ ´ë¸¶´Ù ¹ÝÀÀ
+    getchar();              //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ë¸¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     while (maze[here.row][here.col] != 'x') {
         r = here.row;
@@ -109,7 +109,7 @@ int main() {
         pushLocation(&s, r, c + 1);
 
         if (is_empty(&s)) {
-            printf("½ÇÆÐ\n");
+            printf("ï¿½ï¿½ï¿½ï¿½\n");
             return 0;
         }
         else {
@@ -117,10 +117,30 @@ int main() {
         }
     }
 
-    //Ãâ±¸¸¦ Ã£Àº °æ¿ì
+    //ï¿½â±¸ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½?
 
     maze[here.row][here.col] = 'm';
     printMaze();
-    printf("¼º°ø");
+    printf("ï¿½ï¿½ï¿½ï¿½");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
