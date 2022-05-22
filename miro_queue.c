@@ -18,7 +18,7 @@ typedef struct {
 element here = {1, 0};
 
 char maze[MAZE_SIZE][MAZE_SIZE] = {
-    {'1', '1', '1', '1', '1', '1', '1'}, // maze[ï¿½ï¿½][ï¿½ï¿½]ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    {'1', '1', '1', '1', '1', '1', '1'}, // maze[??][??]?? ??? ????? ????? ????
     {'0', '0', '1', '0', '0', '0', '0'},
     {'1', '0', '0', '0', '1', '0', '1'},
     {'1', '0', '1', '0', '1', '0', '1'},
@@ -46,7 +46,7 @@ int is_empty(QueueType *q)   {
 
 void enqueue(QueueType *q, element item)    {
     if(is_full(q))  {
-        error("Å¥ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+        error("Å¥°¡ Æ÷È­ »óÅÂÀÔ´Ï´Ù.");
         return ;
     }
     q->rear = (q->rear +1) % MAX_QUEUE_SIZE;
@@ -55,7 +55,7 @@ void enqueue(QueueType *q, element item)    {
 
 element dequeue(QueueType *q)   {
     if(is_empty(q)) {
-        error("Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+        error("Å¥°¡ °ø¹é»óÅÂÀÔ´Ï´Ù.");
         exit(1);
     }
     q->front = (q->front +1) %MAX_QUEUE_SIZE;
@@ -64,7 +64,7 @@ element dequeue(QueueType *q)   {
 
 void pushLocation(QueueType *q, int row, int col)   {
     //
-    if ((row>=0 && row<=(MAZE_SIZE - 1)) && (col>=0 && col<=(MAZE_SIZE - 1)))
+    if ((row<0 || row>(MAZE_SIZE - 1)) || (col<0 || col>(MAZE_SIZE - 1)))
         return;
     if ((maze[row][col] != '1') && (maze[row][col] != '.')) {
         element temp;
@@ -89,14 +89,16 @@ int main()  {
     QueueType q;
     init_queue(&q);
 
+
     maze[here.row][here.col] = 'e';
     printMaze();
-    getchar();              //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ë¸¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    getchar();              
 
     while (maze[here.row][here.col] != 'x') {
         r = here.row;
         c = here.col;
         maze[r][c] = 'm';
+        
         printMaze();
         getchar();
 
@@ -108,7 +110,7 @@ int main()  {
         pushLocation(&q, r, c - 1);
 
         if (is_empty(&q)) {
-            printf("ï¿½ï¿½ï¿½ï¿½\n");
+            printf("½ÇÆÐ\n");
             return 0;
         }
         else {
@@ -116,11 +118,11 @@ int main()  {
         }
     }
 
-    //ï¿½â±¸ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½
+    
 
     maze[here.row][here.col] = 'm';
     printMaze();
-    printf("ï¿½ï¿½ï¿½ï¿½");
+    printf("¼º°ø");
 
 
 
