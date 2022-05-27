@@ -24,7 +24,7 @@ int is_full(StackType* s) {
 
 void push(StackType* s, element item) {
    if (is_full(s)) {
-      fprintf(stderr, "스택 포화 에러\n");
+      fprintf(stderr, "스택 포화에러\n");
       return;
    }
    else {
@@ -184,7 +184,7 @@ int main() {
         }
 
         infix_to_postfix(input, postfix);
-        printf("후위 표기식 : %s\n", postfix);
+        printf("후위표기식 : %s\n", postfix);
 
         result = eval(postfix);
         printf("연산 결과 => %d\n\n", result);
