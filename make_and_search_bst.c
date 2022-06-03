@@ -27,7 +27,7 @@ TreeNode* insert_node(TreeNode* root, element key)  {
     else if(key>root->key)
         root->right = insert_node(root->right, key);
     else    {
-        printf("\nÆ®¸®¿¡ µ¿ÀÏ Å°°¡ ÀÖ½À´Ï´Ù !");
+        printf("\níŠ¸ë¦¬ì— ë™ì¼ í‚¤ê°€ ìžˆìŠµë‹ˆë‹¤ !");
     }
     return root;
 }
@@ -73,10 +73,10 @@ int main()  {
             }
         }while(1);
     }
-    printf("\nroot ³ëµå : %d\n", root->key);
+    printf("\nroot ë…¸ë“œ : %d\n", root->key);
 
     inorder_sort(root);
-    printf("\nÁ¤·Ä °á°ú: \n");
+    printf("\nì •ë ¬ ê²°ê³¼: \n");
     for(i = 0; i<MAX_TREE_NODE_NUM;i++) {
         printf("%5d ", list[i]);
         if(i%5 ==4)

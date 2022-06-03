@@ -58,7 +58,7 @@ int main()  {
     TreeNode *n1 = makeRootNode(24, n2, n3);
     TreeNode *exp = n1;
 
-    printf("전위순회 출력 : ");
+    printf("전위 순회 출력 : ");
     preorder_print(exp);
 
     inorder_sum(exp);
